@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hexágono em Canvas</title>
+</head>
+<body>
+  <canvas id="meuCanvas" width="400" height="400"></canvas>
+
+  <script>
+
+    
+
+    // Obtém o contexto 2D do canvas
+    var canvas = document.getElementById("meuCanvas");
+    var contexto = canvas.getContext("2d");
+
+    // Define as coordenadas do centro do hexágono
+    var centroX = canvas.width / 2;
+    var centroY = canvas.height / 2;
+
+    // Define o raio do hexágono
+    var raio = 50;
+
+    // Começa o caminho do hexágono
+    contexto.beginPath();
+
+    // Move para o ponto inicial (primeiro vértice). Desenha o hexagono em sentido antihorario, começando de (1,0)
+    contexto.moveTo(centroX + raio * Math.cos(0), centroY + raio * Math.sin(0));
+
+    // Desenha os lados do hexágono
+    for (var i = 1; i <= 6; i++) {
+      var angulo = (i * 2 * Math.PI) / 6;
+      var x = centroX + raio * Math.cos(angulo);
+      var y = centroY + raio * Math.sin(angulo);
+      if(i == 3){
+        x *= 1
+        y *= 1
+      }
+        
+
+      contexto.lineTo(x, y);
+    }
+
+    // Fecha o caminho
+    contexto.closePath();
+
+    // Define a cor de preenchimento e preenche o hexágono
+    contexto.fillStyle = "lightblue";
+    contexto.fill();
+
+    // Define a cor da borda e desenha a borda do hexágono
+    contexto.strokeStyle = "blue";
+    contexto.lineWidth = 2;
+    contexto.stroke();
+  </script>
+</body>
+</html>
